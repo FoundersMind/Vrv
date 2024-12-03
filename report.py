@@ -19,9 +19,6 @@ def display_results(ip_requests, most_accessed_endpoint, suspicious_activity):
             print(f"{ip:<20} {count:<20}")
     else:
         print("\nSuspicious activity not detected.")
-import csv
-import csv
-import csv
 
 def save_to_csv(ip_requests, most_accessed_endpoint, suspicious_activity, output_file):
     """Save analysis results to a CSV file with properly aligned columns."""
@@ -45,7 +42,10 @@ def save_to_csv(ip_requests, most_accessed_endpoint, suspicious_activity, output
         writer.writerow([])
         
         # Write suspicious activity with failed login counts
-        writer.writerow(["IP Address", "Failed Login Count"])
-        for ip, count in suspicious_activity.items():
-            writer.writerow([f"{ip:<20}", f"{count:<15}"])
+        if suspicious_activity:
+            writer.writerow(["IP Address", "Failed Login Count"])
+            for ip, count in suspicious_activity.items():
+                writer.writerow([f"{ip:<20}", f"{count:<15}"])
+        else:
+            writer.writerow(["Suspicious activity not detected."])
 
