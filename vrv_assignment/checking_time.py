@@ -5,15 +5,14 @@ import io
 def process_line_by_line(file_path):
     with open(file_path, "r") as file:
         for line in file:
-            pass  # Replace with actual line processing logic
+            pass  
 
 # Function for buffered reading (using binary mode)
 def process_buffered_reading(file_path):
     with open(file_path, "rb") as file:  # Open in binary mode ('rb')
         buffered_file = io.BufferedReader(file)
         for line in buffered_file:
-            pass  # Replace with actual line processing logic
-
+            pass  
 # Measure time for line-by-line reading
 def measure_line_by_line_time(file_path):
     start_time = time.time()
