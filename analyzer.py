@@ -8,7 +8,7 @@ def detect_suspicious_activity(failed_logins, threshold):
     suspicious_ips = {}
     for ip, count in failed_logins.items():
         if count > threshold:
-            suspicious_ips[ip] = count
+            suspicious_ips[ip] = count #####
         
     
     return suspicious_ips
