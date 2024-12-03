@@ -28,7 +28,7 @@ def measure_buffered_reading_time(file_path):
     return end_time - start_time
 
 def main():
-    log_file = "sample.log"  # Replace with your actual log file path
+    log_file = "sample.log"  
     
     # Measure and print time for line-by-line reading
     line_by_line_time = measure_line_by_line_time(log_file)
