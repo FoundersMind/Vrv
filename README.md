@@ -95,8 +95,10 @@ Implement custom filters based on status codes or specific keywords.
 ## Various Regex:
 1.
 ip_match = re.match(r"(\d+\.\d+\.\d+\.\d+)", line)
-   endpoint_match = re.search(r'"[A-Z]+ (.+?) HTTP', line)
-   status_code_match = re.search(r'HTTP/\d\.\d" (\d{3}) (\d+)', line)
+
+endpoint_match = re.search(r'"[A-Z]+ (.+?) HTTP', line)
+
+status_code_match = re.search(r'HTTP/\d\.\d" (\d{3}) (\d+)', line)
 
 ## Important Files:
 1.log_reader.py (contains the code for reading the file in buffered chunks instead of line by line to reduce time complexity)
