@@ -20,29 +20,32 @@ def display_results(ip_requests, most_accessed_endpoint, suspicious_activity):
     else:
         print("\nSuspicious activity not detected.")
 import csv
+import csv
+import csv
 
 def save_to_csv(ip_requests, most_accessed_endpoint, suspicious_activity, output_file):
     """Save analysis results to a CSV file with properly aligned columns."""
     with open(output_file, mode="w", newline="") as file:
         writer = csv.writer(file)
         
-        # Write requests per IP with serial numbers
-        writer.writerow(["S.No.", "IP Address", "Request Count"])
-        for sno, (ip, count) in enumerate(ip_requests.items(), start=1):
-            writer.writerow([f"{sno:<5}", f"{ip:<20}", f"{count:<15}"])
+        # Write requests per IP sorted in descending order
+        writer.writerow(["IP Address", "Request Count"])
+        sorted_ip_requests = sorted(ip_requests.items(), key=lambda x: x[1], reverse=True)  # Sort by count, descending
+        for ip, count in sorted_ip_requests:
+            writer.writerow([f"{ip:<20}", f"{count:<15}"])
         
         # Add a blank line for separation
         writer.writerow([])
         
-        # Write most accessed endpoint with serial number
-        writer.writerow(["S.No.", "Endpoint", "Access Count"])
-        writer.writerow([f"{1:<5}", f"{most_accessed_endpoint[0]:<20}", f"{most_accessed_endpoint[1]:<15}"])  # Most accessed endpoint
+        # Write most accessed endpoint with access count
+        writer.writerow(["Endpoint", "Access Count"])
+        writer.writerow([f"{most_accessed_endpoint[0]}", f"(Accessed {most_accessed_endpoint[1]} times)"])
         
         # Add a blank line for separation
         writer.writerow([])
         
-        # Write suspicious activity with serial numbers
-        writer.writerow(["S.No.", "IP Address", "Failed Login Count"])
-        for sno, (ip, count) in enumerate(suspicious_activity.items(), start=1):
-            writer.writerow([f"{sno:<5}", f"{ip:<20}", f"{count:<15}"])
+        # Write suspicious activity with failed login counts
+        writer.writerow(["IP Address", "Failed Login Count"])
+        for ip, count in suspicious_activity.items():
+            writer.writerow([f"{ip:<20}", f"{count:<15}"])
 
